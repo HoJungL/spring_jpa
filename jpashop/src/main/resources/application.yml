@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/sjpashop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+# 스프링부트의 메뉴얼에 들어가서 확인 할 수 잇음!
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true // sout을 통해서찍음. 운영환경에서는 안씀
+        format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
