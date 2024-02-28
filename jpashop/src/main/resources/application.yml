@@ -13,7 +13,8 @@ spring:
       hibernate:
 #        show_sql: true // sout을 통해서찍음. 운영환경에서는 안씀
         format_sql: true
-        default_batch_fetch_size: 100
+        default_batch_fetch_size: 100 # global 적용
+        # 좀더 상세하게 쓰고싶으면, 어노테이션인 @Batchsize 쓰면 됨.
 
 
 logging:

@@ -1,4 +1,4 @@
-package jpabook.jpashop.repository.order.Repository;
+package jpabook.jpashop.repository.order.simplequery;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class OrderSimpleQueryRepository {
     //재사용성이 없음..
     public List<OrderSimpleQueryDto> findOrderDtos() {
         return em.createQuery(
-                        "select new jpabook.jpashop.repository.order.Repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
+                        "select new jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
                                 " from Order as o" +
                                 " join o.member m" +
                                 " join o.delivery d", OrderSimpleQueryDto.class)
