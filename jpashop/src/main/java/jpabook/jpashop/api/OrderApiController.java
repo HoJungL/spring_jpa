@@ -57,6 +57,20 @@ public class OrderApiController {
 
         return result;
     }
+
+    // 주문 조희 3.1 : 페이징과 한계돌파
+    @GetMapping("/api/v3.1/orders")
+    public List<OrderDto> ordersV3_page() {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
+
     @Getter//property : getter가 없다는거임.
     static class OrderDto {
 
@@ -93,7 +107,7 @@ public class OrderApiController {
             count = orderItem.getCount();
 
         }
-        
+
     }
 
 }

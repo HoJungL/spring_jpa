@@ -72,7 +72,11 @@ public class OrderRepository {
         ).getResultList();
     }
 
-    // distinct : 중복 제거해주는거임 구웃.
+    // distinct : 중복 제거해주는거임 구웃. 하지만, DB에서 결과를 뽑을때는 변하지 않음.(모든 행이 같아야 없앨 수 있음)
+    // 1. DB 키워드 알려줌.
+    // 2. Order라는 root 엔티티가 중복인경우 걸러서 컬렉션에 담아줌.
+    
+    //단점 : 하지만 난..일대다 쿼리 페이징(setFirstResult, setMaxResults)이 불가능해... ㅠㅠ
     public List<Order> findAllWithItem() {
         return em.createQuery(
                         "select distinct o from Order o" +
@@ -80,6 +84,8 @@ public class OrderRepository {
                                 " join fetch o.delivery d" +
                                 " join fetch o.orderItems oi" +
                                 " join fetch oi.item i", Order.class)
+                .setFirstResult(1)
+                .setMaxResults(100)
                 .getResultList();
     }
 }
