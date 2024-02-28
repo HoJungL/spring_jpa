@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
 
 //성능저하(병목현상)생길수 있으니, 개발 환겨에서만하고, 배포에서는 고민.	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6")
 
