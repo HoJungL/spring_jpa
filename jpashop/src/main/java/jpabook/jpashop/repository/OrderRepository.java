@@ -3,7 +3,6 @@ package jpabook.jpashop.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -63,4 +62,16 @@ public class OrderRepository {
 
         return query.getResultList();
     }
+
+    // 외부의 모습을 건드리지 않고, 내부의 원하는 것만 fetch join으로 튜닝하기.
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order as o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
+
+
+
 }
