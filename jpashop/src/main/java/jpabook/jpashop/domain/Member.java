@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @JsonIgnore // 이거하면 DB에서 무시됨.
     @OneToMany(mappedBy = "member") //mappedBy에는 변수이름!!
     private List<Order> orders = new ArrayList<>();
 }
